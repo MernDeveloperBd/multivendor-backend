@@ -8,19 +8,19 @@ class SellerService{
         if(exitingSeller){
             throw new Error("Email already resistered")
         }
-        let saveAddress = sellerData.pickUpAddress;
+        let savedAddress = sellerData.pickUpAddress;
 
-        saveAddress = await Address.create(sellerData.pickUpAddress)
+        savedAddress = await Address.create(sellerData.pickUpAddress)
 
         const newSeller = new Seller({
-            sellerName:sellerData.name,
-            mobile:sellerData.mobile,
+            sellerName:sellerData.sellerName,
             email:sellerData.email,
-            password:sellerData.password,
-            pickUpAddress:saveAddress._id,
+            pickUpAddress:savedAddress._id,
             GSTIN:sellerData.GSTIN,
-            businessDetails:sellerData.businessDetails,
+            password:sellerData.password,
+            mobile:sellerData.mobile,
             bankDetails:sellerData.bankDetails,
+            businessDetails:sellerData.businessDetails,
         })
         return await newSeller.save()
     }
@@ -30,7 +30,7 @@ class SellerService{
         return this.getSellerByEmail(email)
     }
 
-    async getSellerByEmail(email){
+    async getSellerByEmail(email){        
         const seller = await Seller.findOne({email})
         if(!seller){
             throw new Error("Seller not found")
@@ -48,11 +48,13 @@ class SellerService{
     async getAllSellers(status){
         return await Seller.find({accountStatus:status})
     }
+// update seller
     async updateSeller(exitingSeller, sellerData){
         return await Seller.findByIdAndUpdate(exitingSeller._id, sellerData, {
             new: true
         })
     }
+
     async updateSellerStatus(sellerId, status){
         return await Seller.findByIdAndUpdate(sellerId, 
             {$set:{accountStatus:status}}, {

@@ -3,7 +3,7 @@ const { default: mongoose } = require("mongoose");
 const addressSchema = new mongoose.Schema({
     name:{type: String},
     locality: {type: String},
-    pinCode: {type: Number},
+    zipCode: {type: Number},
     state:{type: String},
     address:{type: String},
     mobile:{type: String},

@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
-const uri ="mongodb+srv://mmfashionuser:7YmygIERjeyplrLm@mmfashioncluster.4mk4che.mongodb.net/?retryWrites=true&w=majority&appName=mmfashionCluster";
+const uri ="mongodb+srv://mmfashionuser:7YmygIERjeyplrLm@mmfashioncluster.4mk4che.mongodb.net/MMFASHION_WORLD?retryWrites=true&w=majority&appName=mmfashionCluster";
 
 const connectDB = async()=>{
     try {
