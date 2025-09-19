@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
-const UserRoles = require("../../domain/UserRole");
-const AccountStatus = require("../../domain/AccountStatus");
+const UserRoles = require("../domain/UserRole");
+const AccountStatus = require("../domain/AccountStatus");
 
 const sellerSchema = new mongoose.Schema({
     sellerName: {
@@ -70,4 +70,5 @@ const sellerSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-module.exports = mongoose.model("Seller", sellerSchema)
+const Seller = mongoose.model("Seller", sellerSchema)
+module.exports = Seller;
