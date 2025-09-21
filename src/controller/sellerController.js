@@ -1,9 +1,7 @@
-
-
-const UserRoles = require("../domain/UserRole")
-const VerificationCode = require("../modal/VerificationCode")
-const sellerService = require("../service/sellerService")
-const jwtProvider = require("../util/jwtProvider")
+const UserRoles = require("../domain/UserRole.js")
+const VerificationCode = require("../modal/VerificationCode.js")
+const sellerService = require("../service/sellerService.js")
+const jwtProvider = require("../util/jwtProvider.js")
 
 class SellerController {
     async getSellerProfile(req, res) {
@@ -73,7 +71,7 @@ class SellerController {
     async verifyloginOtp(req, res){
         try {
             const{otp, email} = req.body;
-            const seller = await sellerService.getSellerByEmail(email)
+            await sellerService.getSellerByEmail(email)
 
             const verificationCode = await VerificationCode.findOne({email})
             

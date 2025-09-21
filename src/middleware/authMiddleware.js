@@ -1,9 +1,10 @@
-const sellerService = require("../service/sellerService");
+
+const UserService = require("../service/UserService");
 const jwtProvider = require("../util/jwtProvider");
 
-const sellerMiddleWare = async(req, res, next) =>{
+const authMiddleware = async(req, res, next) =>{
     try {
-        const authHeader = req.headers.authorization; 
+        const authHeader = req.headers.authorization;
         if(!authHeader || !authHeader.startsWith('Bearer ')){
             return res.status(401).json({message:"Invalid token, authorization failed"})
         }
@@ -12,9 +13,9 @@ const sellerMiddleWare = async(req, res, next) =>{
             return res.status(401).json({message:"Invalid token, authorization failed"})
         }
         let email = jwtProvider.getEmailFromjwt(token);
-
-        const seller =await sellerService.getSellerByEmail(email)
-        req.seller = seller;
+        const userService = new UserService();
+        const user =await userService.findUserByEmail(email)
+        req.user = user;
         next()
     } catch (error) {
           res.status(500)
@@ -22,4 +23,4 @@ const sellerMiddleWare = async(req, res, next) =>{
     }
 }
 
-module.exports = sellerMiddleWare;
+module.exports = authMiddleware;

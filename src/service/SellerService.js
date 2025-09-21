@@ -37,7 +37,7 @@ class SellerService{
         }
         return seller;
     }
-
+// Get sellers by id
     async getSellerById(id){
         const seller = await Seller.findById(id);
         if(!seller){
@@ -45,6 +45,7 @@ class SellerService{
         }
          return seller;
     }
+    // get all sellers 
     async getAllSellers(status){
         return await Seller.find({accountStatus:status})
     }
