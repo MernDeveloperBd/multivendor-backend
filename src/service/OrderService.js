@@ -130,11 +130,9 @@ class OrderService {
   if (!order) {
     throw new Error("Order not found");
   }
-
-  // যদি order.orderItems থাকে, সেগুলোও delete করতে চাইলে:
+ 
   await OrderItem.deleteMany({ _id: { $in: order.orderItems } });
-
-  // তারপর অর্ডার মুছে ফেলো
+ 
   await Order.findByIdAndDelete(orderId);
 
   return { message: "Order deleted successfully" };
