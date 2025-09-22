@@ -6,7 +6,7 @@ class DealService {
         return await Deal.find().populate({ path: 'category' })
     }
     // create deals
-    async createDeals(deal) {
+    async createDeal(deal) {
         try {
             const category = await HomeCategory.findById(deal?.category?._id);
             const newDeal = new Deal({

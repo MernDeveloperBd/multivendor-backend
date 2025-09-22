@@ -24,6 +24,8 @@ const sellerOrderRoutes = require("./src/routers/SellerOrderRoutes.js")
 const paymentRoutes = require("./src/routers/paymentRoutes.js")
 const transactionRoutes = require("./src/routers/TransactonRoutes.js")
 const sellerReportRoutes = require("./src/routers/SellerReportRoutes")
+const homeCategoryRotes = require("./src/routers/HomeCategoryRoutes.js")
+const dealRoutes = require("./src/routers/DealRoutes.js")
 
 app.use('/auth', authRouters )
 app.use("/api/users", userRoutes)
@@ -40,6 +42,11 @@ app.use('/api/seller/orders', sellerOrderRoutes)
 app.use('/api/payment', paymentRoutes)
 app.use("/api/transactions", transactionRoutes)
 app.use("/api/seller/report", sellerReportRoutes)
+
+app.use('/home', homeCategoryRotes)
+app.use('/admin/deals', dealRoutes)
+
+
 
 app.listen(port, async()=>{
     console.log(`server is runnig on port ${port}`);
